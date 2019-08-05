@@ -58,8 +58,33 @@ namespace Kermit
 
         private void TmrShip_Tick(object sender, EventArgs e)
         {
-            if (left) { area.X -= 5; }//move ship 5 to the left
-            if (right) { area.X += 5; }// move ship 5 to the right
+            if (left) // if left arrow pressed
+            {
+                if (areaSpaceship.X < 10) //check to see if spaceship within 10 of left side
+                {
+                    areaSpaceship.X = 10; //if it is < 10 away "bounce" it (set position at 10)
+                }
+                else
+                {
+                    areaSpaceship.X -= 5; //else move 5 to the left
+                }
+            }
+            if (right) // if right arrow key pressed
+            {
+                if (areaSpaceship.X > PnlGame.Width - 40)// is spaceship within 40 of right side
+                {
+                    areaSpaceship.X = PnlGame.Width - 40;
+                }
+                else
+                {
+                    areaSpaceship.X += 5;
+                }
+            }
+        }
+
+        private void TxtName_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
