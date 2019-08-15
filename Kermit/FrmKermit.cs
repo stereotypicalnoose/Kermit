@@ -26,8 +26,20 @@ namespace Kermit
             for (int i = 0; i <= 6; i++)
             {
                 area[i].Y += planetSpeed[i];
+                //if spaceship collides with any planet lose a life and move planet to the top of the panel
+                if (area[i].IntersectsWith(areaSpaceship))
+                {
+                    area[i].Y = 20;
+                    lives -= 1; // reduce lives by 1
+                                //display the number of lives on the form
+                    LblLives.Text = lives.ToString();
+
+                    CheckLives();
+                }
                 if (area[i].Y > PnlGame.Height)
                 {
+                    score += 1; // add 1 to score
+                    LblScore.Text = score.ToString();//display score on the form 
                     area[i].Y = 20;
                 }
             }
@@ -38,11 +50,12 @@ namespace Kermit
         //Load our two images from the bin\debug folder
         Image spaceship = Image.FromFile(Application.StartupPath + @"\alien1.png");
         Image planet1 = Image.FromFile(Application.StartupPath + @"\planet1.png");
+        int score = 0;
+        int lives = 5;
 
-        private void True(object sender, PreviewKeyDownEventArgs e)
-        {
+      
             bool Left, Right;
-        }
+     
 
         private void FrmKermit_KeyDown(object sender, KeyEventArgs e)
         {
@@ -52,13 +65,13 @@ namespace Kermit
 
         private void FrmKermit_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Left) { left = false; }
-            if (e.KeyData == Keys.Right) { right = false; }
+            if (e.KeyData == Keys.Left) { Left = false; }
+            if (e.KeyData == Keys.Right) { Right = false; }
         }
 
         private void TmrShip_Tick(object sender, EventArgs e)
         {
-            if (left) // if left arrow pressed
+            if (Left) // if left arrow pressed
             {
                 if (areaSpaceship.X < 10) //check to see if spaceship within 10 of left side
                 {
@@ -69,7 +82,7 @@ namespace Kermit
                     areaSpaceship.X -= 5; //else move 5 to the left
                 }
             }
-            if (right) // if right arrow key pressed
+            if (Right) // if right arrow key pressed
             {
                 if (areaSpaceship.X > PnlGame.Width - 40)// is spaceship within 40 of right side
                 {
@@ -84,7 +97,30 @@ namespace Kermit
 
         private void TxtName_TextChanged(object sender, EventArgs e)
         {
+            string context = TxtName.Text;
+            bool isletter = true;
+            //for loop checks for letters as characters are entered
+            for (int i = 0; i < context.Length; i++)
+            {
+                if (!char.IsLetter(context[i]))// if current character not a letter
+                {
+                    isletter = false;//make isletter false
+                    break; // exit the for loop
+                }
 
+            }
+
+            // if not a letter clear the textbox and focus on it
+            // to enter name again
+            if (isletter == false)
+            {
+                TxtName.Clear();
+                TxtName.Focus();
+            }
+            else
+            {
+                mnuStart.Enabled = true;
+            }
         }
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
@@ -92,16 +128,32 @@ namespace Kermit
             //get the methods from the graphic's class to paint on the panel
             g = e.Graphics;
             //use the DrawImage method to draw the spaceship on the panel
-            g.DrawImage(spaceship, area);
-            //use the DrawImage method to draw the planet on the panel
-            g.DrawImage(planet1, area1);
-            g.DrawImage(planet1, area2);
-            g.DrawImage(planet1, area3);
-            g.DrawImage(planet1, area4);
-            g.DrawImage(planet1, area5);
-            g.DrawImage(planet1, area6);
-            g.DrawImage(planet1, area7);
+            for (int i = 0; i <= 6; i++)
+            {
+                g.DrawImage(spaceship, area[i]);
+            }
+             
+        }
 
+        private void mnuStart_Click(object sender, EventArgs e)
+        {
+            score = 0; //when game starts set the score to 0
+            LblScore.Text = score.ToString(); //display the score on the form
+            TmrPlanet.Enabled = true; //start the timer to move the planets
+            TmrShip.Enabled = true; //start the timer to move the spaceship
+        }
+
+        private void MnuStop_Click(object sender, EventArgs e)
+        {
+            TmrShip.Enabled = false;
+            TmrPlanet.Enabled = false;
+        }
+
+        private void FrmKermit_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show("Use the left and right arrow keys to move the spaceship. \n Don't get hit by the planets! \n Every planet that goes past scores a point. \n If a planet hits a spaceship a life is lost!", "Game Instructions");
+            TxtName.Focus();
+            mnuStart.Enabled = false;
         }
 
         public FrmKermit()
@@ -114,14 +166,21 @@ namespace Kermit
                 area[i] = new Rectangle(x + 70 * i, y, 40, 40);
                 planetSpeed[i] = speed.Next(5, 10); //each planet has a random speed
             }
-            speed1 = speed.Next(5, 10);//planet1's speed will be between 5 and 10
-            speed2 = speed.Next(5, 10);//planet1's speed will be between 5 and 10
-            speed3 = speed.Next(5, 10);//planet1's speed will be between 5 and 10
-            speed4 = speed.Next(5, 10);//planet1's speed will be between 5 and 10
-            speed5 = speed.Next(5, 10);//planet1's speed will be between 5 and 10
-            speed6 = speed.Next(5, 10);//planet1's speed will be between 5 and 10
-            speed7 = speed.Next(5, 10);//planet1's speed will be between 5 and 10
+          
             
         }
+        //the CheckLives method will stop the planets and spaceship moving if there are no lives left
+        // and a game over message will be displayed  
+        private void CheckLives()
+        {
+            if (lives == 0)
+            {
+                TmrPlanet.Enabled = false;
+                TmrShip.Enabled = false;
+                MessageBox.Show("Game Over");
+
+            }
+        }
+
     }
 }

@@ -37,8 +37,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.TxtLives = new System.Windows.Forms.TextBox();
+            this.LblLives = new System.Windows.Forms.TextBox();
             this.TxtName = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mnuStart = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuStop = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlGame
@@ -57,7 +61,6 @@
             // 
             // TmrShip
             // 
-            this.TmrShip.Enabled = true;
             this.TmrShip.Interval = 50;
             this.TmrShip.Tick += new System.EventHandler(this.TmrShip_Tick);
             // 
@@ -106,13 +109,13 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Planet Dodge";
             // 
-            // TxtLives
+            // LblLives
             // 
-            this.TxtLives.Location = new System.Drawing.Point(559, 343);
-            this.TxtLives.Name = "TxtLives";
-            this.TxtLives.Size = new System.Drawing.Size(100, 20);
-            this.TxtLives.TabIndex = 5;
-            this.TxtLives.Text = "5";
+            this.LblLives.Location = new System.Drawing.Point(559, 343);
+            this.LblLives.Name = "LblLives";
+            this.LblLives.Size = new System.Drawing.Size(100, 20);
+            this.LblLives.TabIndex = 5;
+            this.LblLives.Text = "5";
             // 
             // TxtName
             // 
@@ -122,12 +125,37 @@
             this.TxtName.TabIndex = 6;
             this.TxtName.TextChanged += new System.EventHandler(this.TxtName_TextChanged);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuStart,
+            this.MnuStop});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(736, 24);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // mnuStart
+            // 
+            this.mnuStart.Name = "mnuStart";
+            this.mnuStart.Size = new System.Drawing.Size(42, 20);
+            this.mnuStart.Text = "start";
+            this.mnuStart.Click += new System.EventHandler(this.mnuStart_Click);
+            // 
+            // MnuStop
+            // 
+            this.MnuStop.Name = "MnuStop";
+            this.MnuStop.Size = new System.Drawing.Size(42, 20);
+            this.MnuStop.Text = "stop";
+            this.MnuStop.Click += new System.EventHandler(this.MnuStop_Click);
+            // 
             // FrmKermit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 541);
-            this.Controls.Add(this.TxtLives);
+            this.Controls.Add(this.LblLives);
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LblScore);
@@ -135,12 +163,16 @@
             this.Controls.Add(this.PnlGame);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmKermit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kermit";
+            this.Load += new System.EventHandler(this.FrmKermit_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKermit_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmKermit_KeyUp);
-            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.True);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,12 +184,15 @@
         private System.Windows.Forms.Timer TmrPlanet;
         private System.Windows.Forms.Timer TmrShip;
         private System.Windows.Forms.TextBox TxtName;
-        private System.Windows.Forms.TextBox TxtLives;
+        private System.Windows.Forms.TextBox LblLives;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label LblScore;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuStart;
+        private System.Windows.Forms.ToolStripMenuItem MnuStop;
     }
 }
 
