@@ -61,6 +61,7 @@
             // 
             // TmrShip
             // 
+            this.TmrShip.Enabled = true;
             this.TmrShip.Interval = 50;
             this.TmrShip.Tick += new System.EventHandler(this.TmrShip_Tick);
             // 
@@ -94,7 +95,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(596, 135);
+            this.label4.Location = new System.Drawing.Point(593, 158);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 3;
@@ -103,11 +104,13 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(225, 40);
+            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(207, 41);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 13);
+            this.label5.Size = new System.Drawing.Size(180, 38);
             this.label5.TabIndex = 4;
             this.label5.Text = "Planet Dodge";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // LblLives
             // 

@@ -121,6 +121,7 @@ namespace Kermit
             {
                 mnuStart.Enabled = true;
             }
+            
         }
 
         private void pnlGame_Paint(object sender, PaintEventArgs e)
@@ -130,9 +131,10 @@ namespace Kermit
             //use the DrawImage method to draw the spaceship on the panel
             for (int i = 0; i <= 6; i++)
             {
-                g.DrawImage(spaceship, area[i]);
+                g.DrawImage(planet1, area[i]);
+                
             }
-             
+           
         }
 
         private void mnuStart_Click(object sender, EventArgs e)
@@ -149,11 +151,16 @@ namespace Kermit
             TmrPlanet.Enabled = false;
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void FrmKermit_Load(object sender, EventArgs e)
         {
             MessageBox.Show("Use the left and right arrow keys to move the spaceship. \n Don't get hit by the planets! \n Every planet that goes past scores a point. \n If a planet hits a spaceship a life is lost!", "Game Instructions");
             TxtName.Focus();
-            mnuStart.Enabled = false;
+            mnuStart.Enabled = true;
         }
 
         public FrmKermit()
