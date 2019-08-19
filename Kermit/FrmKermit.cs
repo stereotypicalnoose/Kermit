@@ -50,6 +50,7 @@ namespace Kermit
         //Load our two images from the bin\debug folder
         Image spaceship = Image.FromFile(Application.StartupPath + @"\alien1.png");
         Image planet1 = Image.FromFile(Application.StartupPath + @"\planet1.png");
+       
         int score = 0;
         int lives = 5;
 
@@ -128,13 +129,14 @@ namespace Kermit
         {
             //get the methods from the graphic's class to paint on the panel
             g = e.Graphics;
+            
             //use the DrawImage method to draw the spaceship on the panel
             for (int i = 0; i <= 6; i++)
             {
                 g.DrawImage(planet1, area[i]);
-                
+               
             }
-           
+            g.DrawImage(spaceship, areaSpaceship);
         }
 
         private void mnuStart_Click(object sender, EventArgs e)
@@ -160,7 +162,7 @@ namespace Kermit
         {
             MessageBox.Show("Use the left and right arrow keys to move the spaceship. \n Don't get hit by the planets! \n Every planet that goes past scores a point. \n If a planet hits a spaceship a life is lost!", "Game Instructions");
             TxtName.Focus();
-            mnuStart.Enabled = true;
+            mnuStart.Enabled = false;
         }
 
         public FrmKermit()
