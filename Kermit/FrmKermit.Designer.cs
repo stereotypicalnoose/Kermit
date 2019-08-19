@@ -110,9 +110,9 @@
             this.label5.Font = new System.Drawing.Font("Comic Sans MS", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(200, 41);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(180, 38);
+            this.label5.Size = new System.Drawing.Size(166, 38);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Planet Dodge";
+            this.label5.Text = "Piggy Dodge";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // LblLives

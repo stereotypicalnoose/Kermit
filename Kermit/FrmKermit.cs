@@ -15,7 +15,7 @@ namespace Kermit
         Graphics g; // declare the graphics object
         int x = 20, y = 20;// starting position of planet
         Random speed = new Random();
-        int[] planetSpeed = new int[7];
+        int[] piggySpeed = new int[7];
         // declare a rectangle to contain the spaceship and an area array to contain the planets
         Rectangle areakermit;
         Rectangle[] area = new Rectangle[7];//area[0] to area[6]
@@ -25,7 +25,7 @@ namespace Kermit
         {
             for (int i = 0; i <= 6; i++)
             {
-                area[i].Y += planetSpeed[i];
+                area[i].Y += piggySpeed[i];
                 //if spaceship collides with any planet lose a life and move planet to the top of the panel
                 if (area[i].IntersectsWith(areakermit))
                 {
@@ -51,7 +51,7 @@ namespace Kermit
         Image spaceship = Image.FromFile(Application.StartupPath + @"\alien1.png");
         Image planet1 = Image.FromFile(Application.StartupPath + @"\planet1.png");
         Image kermit1 = Image.FromFile(Application.StartupPath + @"\kermit.png");
-
+        Image piggy1 = Image.FromFile(Application.StartupPath + @"\piggy.png");
 
         int score = 0;
         int lives = 5;
@@ -135,7 +135,7 @@ namespace Kermit
             //use the DrawImage method to draw the spaceship on the panel
             for (int i = 0; i <= 6; i++)
             {
-                g.DrawImage(planet1, area[i]);
+                g.DrawImage(piggy1, area[i]);
                
             }
             g.DrawImage(kermit1, areakermit);
@@ -175,7 +175,7 @@ namespace Kermit
             for (int i = 0; i < 7; i++)
             {
                 area[i] = new Rectangle(x + 70 * i, y, 40, 40);
-                planetSpeed[i] = speed.Next(5, 10); //each planet has a random speed
+                piggySpeed[i] = speed.Next(5, 10); //each planet has a random speed
             }
           
             
