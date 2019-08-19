@@ -17,7 +17,7 @@ namespace Kermit
         Random speed = new Random();
         int[] planetSpeed = new int[7];
         // declare a rectangle to contain the spaceship and an area array to contain the planets
-        Rectangle areaSpaceship;
+        Rectangle areakermit;
         Rectangle[] area = new Rectangle[7];//area[0] to area[6]
     
 
@@ -27,7 +27,7 @@ namespace Kermit
             {
                 area[i].Y += planetSpeed[i];
                 //if spaceship collides with any planet lose a life and move planet to the top of the panel
-                if (area[i].IntersectsWith(areaSpaceship))
+                if (area[i].IntersectsWith(areakermit))
                 {
                     area[i].Y = 20;
                     lives -= 1; // reduce lives by 1
@@ -50,7 +50,9 @@ namespace Kermit
         //Load our two images from the bin\debug folder
         Image spaceship = Image.FromFile(Application.StartupPath + @"\alien1.png");
         Image planet1 = Image.FromFile(Application.StartupPath + @"\planet1.png");
-       
+        Image kermit1 = Image.FromFile(Application.StartupPath + @"\kermit.png");
+
+
         int score = 0;
         int lives = 5;
 
@@ -74,24 +76,24 @@ namespace Kermit
         {
             if (Left) // if left arrow pressed
             {
-                if (areaSpaceship.X < 10) //check to see if spaceship within 10 of left side
+                if (areakermit.X < 10) //check to see if spaceship within 10 of left side
                 {
-                    areaSpaceship.X = 10; //if it is < 10 away "bounce" it (set position at 10)
+                    areakermit.X = 10; //if it is < 10 away "bounce" it (set position at 10)
                 }
                 else
                 {
-                    areaSpaceship.X -= 5; //else move 5 to the left
+                    areakermit.X -= 5; //else move 5 to the left
                 }
             }
             if (Right) // if right arrow key pressed
             {
-                if (areaSpaceship.X > PnlGame.Width - 40)// is spaceship within 40 of right side
+                if (areakermit.X > PnlGame.Width - 40)// is spaceship within 40 of right side
                 {
-                    areaSpaceship.X = PnlGame.Width - 40;
+                    areakermit.X = PnlGame.Width - 40;
                 }
                 else
                 {
-                    areaSpaceship.X += 5;
+                    areakermit.X += 5;
                 }
             }
         }
@@ -136,7 +138,7 @@ namespace Kermit
                 g.DrawImage(planet1, area[i]);
                
             }
-            g.DrawImage(spaceship, areaSpaceship);
+            g.DrawImage(kermit1, areakermit);
         }
 
         private void mnuStart_Click(object sender, EventArgs e)
@@ -168,7 +170,7 @@ namespace Kermit
         public FrmKermit()
         {
             InitializeComponent();
-            areaSpaceship = new Rectangle(x2, y2, 30, 30);//spaceship's rectangle
+            areakermit = new Rectangle(x2, y2, 60, 60);//spaceship's rectangle
                                                           //position the planets
             for (int i = 0; i < 7; i++)
             {
