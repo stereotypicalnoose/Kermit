@@ -162,9 +162,9 @@ namespace Kermit
 
         private void FrmKermit_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Use the left and right arrow keys to move the spaceship. \n Don't get hit by the planets! \n Every planet that goes past scores a point. \n If a planet hits a spaceship a life is lost!", "Game Instructions");
+            MessageBox.Show("Use the left and right arrow keys to move kermit. \n Don't let miss piggy catch you! \n Every miss piggy that goes past scores a point. \n If a miss piggy hits kermit a life is lost!", "Game Instructions");
             TxtName.Focus();
-            mnuStart.Enabled = false;
+            mnuStart.Enabled = true;
         }
 
         public FrmKermit()
@@ -188,7 +188,7 @@ namespace Kermit
             {
                 TmrPlanet.Enabled = false;
                 TmrShip.Enabled = false;
-                MessageBox.Show("Game Over");
+                MessageBox.Show("you lose! \n she caught you");
 
             }
         }
