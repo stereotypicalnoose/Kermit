@@ -13,7 +13,7 @@ namespace Kermit
     public partial class FrmKermit : Form
     {
         Graphics g; // declare the graphics object
-        int x = 20, y = 20;// starting position of planet
+        int x = 50, y = 290;// starting position of planet
         Random speed = new Random();
         int[] piggySpeed = new int[7];
         // declare a rectangle to contain the spaceship and an area array to contain the planets
@@ -25,28 +25,28 @@ namespace Kermit
         {
             for (int i = 0; i <= 6; i++)
             {
-                area[i].Y += piggySpeed[i];
+                area[i].Y -= piggySpeed[i];
                 //if spaceship collides with any planet lose a life and move planet to the top of the panel
                 if (area[i].IntersectsWith(areakermit))
                 {
-                    area[i].Y = 20;
+                    area[i].Y = 290;
                     lives -= 1; // reduce lives by 1
                                 //display the number of lives on the form
                     LblLives.Text = lives.ToString();
 
                     CheckLives();
                 }
-                if (area[i].Y > PnlGame.Height)
+                if (area[i].Y < 0)
                 {
                     score += 1; // add 1 to score
                     LblScore.Text = score.ToString();//display score on the form 
-                    area[i].Y = 20;
+                    area[i].Y = 390;
                 }
             }
             PnlGame.Invalidate();
         }
 
-        int x2 = 50, y2 = 290; //starting position of spaceship
+        int x2 = 20, y2 = 20;//starting position of spaceship
         //Load our two images from the bin\debug folder
         Image spaceship = Image.FromFile(Application.StartupPath + @"\alien1.png");
         Image planet1 = Image.FromFile(Application.StartupPath + @"\planet1.png");
@@ -164,7 +164,7 @@ namespace Kermit
         {
             MessageBox.Show("Use the left and right arrow keys to move kermit. \n Don't let miss piggy catch you! \n Every miss piggy that goes past scores a point. \n If a miss piggy hits kermit a life is lost!", "Game Instructions");
             TxtName.Focus();
-            mnuStart.Enabled = true;
+            mnuStart.Enabled = false;
         }
 
         public FrmKermit()
